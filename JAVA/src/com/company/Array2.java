@@ -9,7 +9,6 @@ import java.util.*;
                 System.out.print(i + "\t");
             }
             System.out.println();
-
         }
 
         public static int arrsum(ArrayList<Integer> arr){
@@ -99,6 +98,7 @@ import java.util.*;
         public static void dummy(int n){
            n=5;
         }
+
         public static void main(String[] args) {
             ArrayList<Integer> arr = new ArrayList<>();
 

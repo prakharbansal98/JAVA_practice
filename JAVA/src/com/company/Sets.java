@@ -31,6 +31,17 @@ public class Sets {
         set2.add(6);
         set2.add(7);
 
+        set2.addAll(set1);
+        System.out.println(set2);
+
+        System.out.println(set1.size());
+
+
+        System.out.println(set1.contains(6));
+
+       System.out.println(set1.containsAll(set1));
+
+
 
 
 

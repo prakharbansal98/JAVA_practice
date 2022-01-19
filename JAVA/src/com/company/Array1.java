@@ -1,6 +1,6 @@
 package com.company;
 
-public class Iteration {
+public class Array1 {
 
     static void print(int a){
         System.out.println(a);
