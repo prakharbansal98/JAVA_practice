@@ -1,36 +1,34 @@
 package com.company;
 
-import java.util.ArrayList;
+public class Two_Stacks_DynamicSize {
 
-public class Two_Stacks {
-
-    int size=10, top1=5,top2=4 ;
+    int size=10, top1=-1,top2=10 ;
     int[] s;
 
-    Two_Stacks(){
+    Two_Stacks_DynamicSize(){
         s= new int[size];
     }
     public void push1(int a){
-      if(top1>0) {
-          top1--;
-          s[top1] = a;
-      } else {
-          System.out.println("Stack is full");
-      }
+       if(top1+1==top2) {
+           System.out.println("Stack is full");
+       } else{
+           top1++;
+           s[top1] = a;
+       }
     }
 
     public void pop1(){
 
-        if(top1==5) {
+        if(top1==-1) {
             System.out.println("Stack is empty");
         } else {
-            top1++;
+            top1--;
         }
     }
     public void print1(){
         System.out.print("s1 :");
 
-        for(int i=top1; i<=4; i++){
+        for(int i=0; i<=top1; i++){
             System.out.print(s[i]+"\t");
         }
         System.out.println();
@@ -38,26 +36,26 @@ public class Two_Stacks {
     }
 
     public void push2(int a){
-        if(top2<size-1) {
-            top2++;
-            s[top2] = a;
-        } else {
+        if(top1+1==top2) {
             System.out.println("Stack is full");
+        } else{
+            top2--;
+            s[top2] = a;
         }
     }
 
     public void pop2(){
 
-        if(top2==4) {
+        if(top2==size) {
             System.out.println("Stack is empty");
         } else {
-            top2--;
+            top2++;
         }
     }
     public void print2(){
         System.out.print("s2 :");
 
-        for(int i=top2; i>=5; i--){
+        for(int i=size-1; i>=top2; i--){
             System.out.print(s[i]+"\t");
 
         }
@@ -66,13 +64,16 @@ public class Two_Stacks {
 
     public static void main(String[] args) {
 
-        Two_Stacks twoS = new Two_Stacks();
+        Two_Stacks_DynamicSize twoS = new Two_Stacks_DynamicSize();
+       twoS.pop1();
+
         twoS.push1(1);
         twoS.push1(2);
         twoS.push1(3);
         twoS.push1(4);
         twoS.push1(5);
         twoS.push1(6);
+        twoS.push1(7);
 
         twoS.print1();
 
@@ -81,7 +82,6 @@ public class Two_Stacks {
         twoS.push2(3);
         twoS.push2(4);
         twoS.push2(5);
-        twoS.push2(6);
 
 
         twoS.print2();
@@ -91,6 +91,10 @@ public class Two_Stacks {
         twoS.print1();
         twoS.print2();
 
+        twoS.push2(4);
+        twoS.push2(5);
+        twoS.print1();
+        twoS.print2();
 
 
 
