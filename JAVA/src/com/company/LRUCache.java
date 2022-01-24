@@ -9,9 +9,9 @@ public class LRUCache {
             queue.remove(i);
         }
         if(queue.isFull()) {
-            queue.poll();
+            queue.dequeue();
         }
-        queue.add(i);
+        queue.enqueue(i);
 
 
     }
