@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.*;
 
-    public class Array2 {
+    public class Array_List {
         public static void print(ArrayList<Integer> arr) {
             System.out.print("array: ");
             for(Integer  i:arr) {
