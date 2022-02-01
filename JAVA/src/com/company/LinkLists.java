@@ -16,6 +16,7 @@ class Node{
 public class LinkLists {
 
      Node head=null;
+     int c;
 
      public void print(){
          Node i = head;
@@ -26,19 +27,19 @@ public class LinkLists {
          System.out.println("NULL");
      }
 
-     public void insertAtTail(int a){
+     public void insertAtTail(int data){
          if(head==null){
-             head = new Node(a);
+             head = new Node(data);
          } else {
              Node i;
              for (i = head; i.next != null; i = i.next) ;
-             i.next = new Node(a);
+             i.next = new Node(data);
          }
      }
 
-     public void insertAtHead(int a){
+     public void insertAtHead(int data){
          Node i = head;
-         head = new Node(a);
+         head = new Node(data);
          head.next = i;
      }
 
@@ -46,10 +47,10 @@ public class LinkLists {
         if(head!= null) {
             Node i = head;
 
-            int a;
+            int data;
 
             if(i.next==null){
-                a= head.data;
+                data= head.data;
                 head=null;
 
             } else {
@@ -57,13 +58,13 @@ public class LinkLists {
                 while (i.next.next != null) {
                     i = i.next;
                 }
-                a = i.next.data;
+                data = i.next.data;
 
                 i.next = null;
             }
 
-            System.out.println("removing :" + a);
-            return a;
+            System.out.println("removing :" + data);
+            return data;
 
         }
 
@@ -86,38 +87,85 @@ public class LinkLists {
 
     }
 
+    public int length(){
+        Node i = head;
+        int l=0;
+        while (i!=null){
+            l++;
+            i=i.next;
+        }
+        System.out.println("length of linkedlist is:" +l);
+        return l;
+    }
+
+    public int middleElement(){
+        int m= length()/2;
+
+        Node i = head;
+        for(int j=0; j<m; j++){
+            i=i.next;
+        }
+        System.out.println("middle element is:" + i.data);
+        return i.data;
+    }
+
+    public void insertAtPosition(int data, int position){
+        if(position==1){
+            insertAtHead(data);
+            print();
+        }
+        else if(position<0){
+            System.out.println("Position only be between "+ 1 +" to "+ length());
+        }
+        else if (position<=length()-1) {
+            Node i = head;
+
+            for (int j = 0; j < position - 1; j++) {
+                i = i.next;
+            }
+            Node n = i.next;
+            i.next = new Node(data);
+            i.next.next = n;
+            print();
+        }
+        else if(position>length()){
+            System.out.println("Position only be between "+ 1 +" to "+ length());
+        }
+    }
+
 
     public static void main(String[] args) {
 
         LinkLists l = new LinkLists();
-        l.insertAtTail(-1);
-        l.insertAtHead(-2);
-        l.print();
 
-  /*      l.head= new Node(1);
+        l.head= new Node(1);
         l.head.next= new Node(2);
         l.head.next.next= new Node(3);
         l.head.next.next.next= new Node(4);
         l.head.next.next.next.next= new Node(5);
-        l.print();  */
+        l.print();
 
         l.insertAtTail(6);
         l.print();
-
-        l.insertAtHead(0);
+        l.insertAtTail(7);
         l.print();
 
-        l.removeAtTail();
-        l.print();
 
         l.removeAtTail();
         l.print();
-        l.removeAtTail();
-        l.print();
-        l.removeAtTail();
-        l.print();
-        l.removeAtTail();
-        l.print();
+
+        l.length();
+
+        l.middleElement();
+
+        l.insertAtPosition(80,60);
+
+
+
+
+
+
+
 
     }
 }
