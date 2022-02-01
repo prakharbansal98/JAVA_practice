@@ -133,6 +133,38 @@ public class LinkLists {
         }
     }
 
+    public void removeAtPosition(int position){
+         if(position==1){
+             removeAtHead();
+             print();
+         }
+         else if(position==length()){
+             removeAtTail();
+             print();
+         }
+         else if(position<=0){
+             System.out.println("Elements can only be removed from " + 1 + " to " + length() );
+         }
+         else if(position>length()){
+             System.out.println("Elements can only be removed from " + 1 + " to " + length() );
+         }
+         else if(position<length()){
+             Node i =head;
+
+             for (int j = 0; j < position - 1; j++) {
+                 i = i.next;
+             }
+             System.out.println(i.data);
+
+             Node n = i.next.next;
+
+             i.next = null;
+             i.next = n;
+
+             print();
+         }
+    }
+
 
     public static void main(String[] args) {
 
@@ -159,6 +191,8 @@ public class LinkLists {
         l.middleElement();
 
         l.insertAtPosition(80,60);
+
+        l.removeAtPosition(4);
 
 
 
