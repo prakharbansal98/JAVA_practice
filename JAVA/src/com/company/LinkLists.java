@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Random;
+
 class Node{
 
     int data;
@@ -16,9 +18,12 @@ class Node{
 public class LinkLists {
 
      Node head=null;
-     int c;
 
-     public void print(){
+
+    public void print(){
+        print(head);
+    }
+     public void print(Node head){
          Node i = head;
          while (i!=null){
              System.out.print(i.data+"=>");
@@ -151,30 +156,26 @@ public class LinkLists {
          else if(position<length()){
              Node i =head;
 
-             for (int j = 0; j < position - 1; j++) {
+             for (int j = 0; j < position - 2; j++) {
                  i = i.next;
              }
-             System.out.println(i.data);
-
-             Node n = i.next.next;
-
-             i.next = null;
-             i.next = n;
+             i.next = i.next.next;
 
              print();
          }
     }
 
 
+
     public static void main(String[] args) {
 
         LinkLists l = new LinkLists();
 
-        l.head= new Node(1);
-        l.head.next= new Node(2);
-        l.head.next.next= new Node(3);
-        l.head.next.next.next= new Node(4);
-        l.head.next.next.next.next= new Node(5);
+        l.head = new Node(1);
+        l.head.next = new Node(2);
+        l.head.next.next = new Node(3);
+        l.head.next.next.next = new Node(4);
+        l.head.next.next.next.next = new Node(5);
         l.print();
 
         l.insertAtTail(6);
@@ -190,16 +191,21 @@ public class LinkLists {
 
         l.middleElement();
 
-        l.insertAtPosition(80,60);
+        l.insertAtPosition(80, 60);
 
         l.removeAtPosition(4);
 
-
-
-
-
-
-
-
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
