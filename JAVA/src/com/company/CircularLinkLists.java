@@ -1,19 +1,6 @@
 package com.company;
 
-class Node{
-
-    int data;
-    Node next;
-
-    Node(int d){
-        data= d;
-        next= null;
-    }
-
-}
-
-
-public class LinkLists {
+public class CircularLinkLists extends LinkLists {
 
      Node head=null;
 
@@ -25,48 +12,61 @@ public class LinkLists {
         print(head);
     }
      public void print(Node head){
-         Node i = head;
-         while (i!=null){
-             System.out.print(i.data+"=>");
-             i=i.next;
-         }
-         System.out.println("NULL");
+
+        Node i = head;
+        if(i==null){
+            System.out.println("LinkedList is empty.");
+            return;
+        }
+        do{
+            System.out.print(i.data+"=>");
+            i=i.next;
+        } while (i!= head);
+         System.out.println("HEAD" );
      }
 
      public void insertAtTail(int data){
          if(head==null){
              head = new Node(data);
+             head.next= head;
          } else {
-             Node i;
-             for (i = head; i.next != null; i = i.next) ;
+             Node i=head;
+             while(i.next!=head) {
+                i=i.next;
+             }
              i.next = new Node(data);
+             i= i.next;
+             i.next = head;
+
          }
      }
 
      public void insertAtHead(int data){
          Node i = head;
+         Node t = tail();
          head = new Node(data);
          head.next = i;
+         t.next=head;
      }
 
     public Integer removeAtTail(){
-        if(head!= null) {
+        if(head!= null) { //non empty linked list
             Node i = head;
 
             int data;
 
-            if(i.next==null){
+            if(i.next==head){ // if link list has 1 element, whenever 1 element is left special case is made for it
                 data= head.data;
                 head=null;
 
             } else {
 
-                while (i.next.next != null) {
+                while (i.next.next != head) {
                     i = i.next;
                 }
                 data = i.next.data;
 
-                i.next = null;
+                i.next = head;
             }
 
             System.out.println("removing :" + data);
@@ -82,13 +82,18 @@ public class LinkLists {
 
     public Integer removeAtHead(){
       if(head!= null) {
-          int a =head.data;
-          head = head.next;
 
-          return a;
+          if(head.next== head){     // if link list has 1 element, whenever 1 element is left special case is made for it
+              head =null;
+          } else {
+              Node t = tail();
+              head = head.next;
+              t.next = head;
+          }
       }
-
-      System.out.println("Linklist is empty.");
+      else {
+          System.out.println("Linklist is empty.");
+      }
       return -1;
 
     }
@@ -96,10 +101,11 @@ public class LinkLists {
     public int length(){
         Node i = head;
         int l=0;
-        while (i!=null){
+        while (i.next!=head){
             l++;
             i=i.next;
         }
+        l++;
         System.out.println("length of linkedlist is:" +l);
         return l;
     }
@@ -123,7 +129,7 @@ public class LinkLists {
         else if(position<0){
             System.out.println("Position only be between "+ 1 +" to "+ length());
         }
-        else if (position<=length()-1) {
+        else {
             Node i = head;
 
             for (int j = 0; j < position - 1; j++) {
@@ -133,9 +139,6 @@ public class LinkLists {
             i.next = new Node(data);
             i.next.next = n;
             print();
-        }
-        else if(position>length()){
-            System.out.println("Position only be between "+ 1 +" to "+ length());
         }
     }
 
@@ -166,7 +169,7 @@ public class LinkLists {
          }
     }
 
-    public void mergeLinkedList(LinkLists l1, LinkLists l2){
+    public void mergeLinkedList(CircularLinkLists l1, CircularLinkLists l2){
         l1.tail().next= l2.head;
         head=l1.head;
         print();
@@ -175,27 +178,13 @@ public class LinkLists {
 
     public Node tail(){
         Node i=head;
-        while(i.next!=null){
-            i= i.next;
+        while(i.next!=head) {
+            i=i.next;
         }
         return i;
     }
 
-
-
-
-    public static void main(String[] args) {
-
-        LinkLists l1 = new LinkLists();
-        LinkLists l2 = new LinkLists();
-
-        l1.head = new Node(1);
-        l1.head.next = new Node(2);
-        l1.head.next.next = new Node(3);
-        l1.head.next.next.next = new Node(4);
-        l1.head.next.next.next.next = new Node(5);
-        l1.print();
-
+    private static void operationsOfLinkList(LinkLists l2) {
         l2.insertAtTail(6);
         l2.print();
         l2.insertAtTail(7);
@@ -208,21 +197,67 @@ public class LinkLists {
         l2.print();
 
 
-        l2.removeAtTail();
+        l2.insertAtHead(5);
         l2.print();
+
+
+        System.out.println(l2.tail().data);
+
+
+        //  l2.removeAtTail();
+        //  l2.print();
 
         l2.length();
 
         l2.middleElement();
 
+        l2.insertAtHead(4);
+        l2.print();
+        l2.middleElement();
+
         l2.insertAtPosition(80, 60);
 
-        l2.removeAtPosition(4);
+        l2.removeAtPosition(5);
+
+        //  for(int i=0; i< 7; i++) {
+        l2.removeAtHead();
         l2.print("l2 :");
+        //  }
 
-        LinkLists l3= new LinkLists();
-        l3.mergeLinkedList(l1,l2);
 
+        l2.removeAtTail();
+        l2.print();
+
+
+        //   CircularLinkLists l3= new CircularLinkLists();
+        //    l3.mergeLinkedList(l1,l2);
+    }
+
+
+
+
+    public static void main(String[] args) {
+
+        CircularLinkLists l1 = new CircularLinkLists();
+
+
+        l1.head = new Node(1);
+        l1.head.next = new Node(2);
+        l1.head.next.next = new Node(3);
+        l1.head.next.next.next = new Node(4);
+        l1.head.next.next.next.next = new Node(5);
+        l1.head.next.next.next.next.next = l1.head;
+        l1.print();
+
+        System.out.println("---Circular Linked List---");
+
+        CircularLinkLists l2 = new CircularLinkLists();
+        operationsOfLinkList(l2);
+
+        System.out.println("---Linear Linked List---");
+
+        LinkLists l3 = new LinkLists();
+        operationsOfLinkList(l3);
     }
 }
 
