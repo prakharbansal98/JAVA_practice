@@ -184,49 +184,49 @@ public class CircularLinkLists extends LinkLists {
         return i;
     }
 
-    private static void operationsOfLinkList(LinkLists l2) {
-        l2.insertAtTail(6);
-        l2.print();
-        l2.insertAtTail(7);
-        l2.print();
-        l2.insertAtTail(8);
-        l2.print();
-        l2.insertAtTail(9);
-        l2.print();
-        l2.insertAtTail(10);
-        l2.print();
+    private static void operationsOfLinkList(LinkLists l) {
+        l.insertAtTail(6);
+        l.print();
+        l.insertAtTail(7);
+        l.print();
+        l.insertAtTail(8);
+        l.print();
+        l.insertAtTail(9);
+        l.print();
+        l.insertAtTail(10);
+        l.print();
 
 
-        l2.insertAtHead(5);
-        l2.print();
+        l.insertAtHead(5);
+        l.print();
 
 
-        System.out.println(l2.tail().data);
+        System.out.println(l.tail().data);
 
 
-        //  l2.removeAtTail();
-        //  l2.print();
+        //  l.removeAtTail();
+        //  l.print();
 
-        l2.length();
+        l.length();
 
-        l2.middleElement();
+        l.middleElement();
 
-        l2.insertAtHead(4);
-        l2.print();
-        l2.middleElement();
+        l.insertAtHead(4);
+        l.print();
+        l.middleElement();
 
-        l2.insertAtPosition(80, 60);
+        l.insertAtPosition(80, 60);
 
-        l2.removeAtPosition(5);
+        l.removeAtPosition(5);
 
         //  for(int i=0; i< 7; i++) {
-        l2.removeAtHead();
-        l2.print("l2 :");
+        l.removeAtHead();
+        l.print("l :");
         //  }
 
 
-        l2.removeAtTail();
-        l2.print();
+        l.removeAtTail();
+        l.print();
 
 
         //   CircularLinkLists l3= new CircularLinkLists();

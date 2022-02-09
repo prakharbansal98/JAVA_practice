@@ -48,7 +48,7 @@ public class SortedLinkedList extends LinkLists {
 
     public void mergeLinkedList(SortedLinkedList l1, SortedLinkedList l2){
 
-        head = new Node(-1);
+        head = new Node(-1); // dummy head which will be removed afterwards
        // head = (l1.head.data < l2.head.data) ? l1.head : l2.head;
         Node i= l1.head, j=l2.head, k=head;
 
@@ -56,12 +56,13 @@ public class SortedLinkedList extends LinkLists {
             if(i.data<j.data){
                 k.next=i;
                 i=i.next;
+                k= k.next;
             }
             else{
                 k.next=j;
                 j=j.next;
+                k= k.next;
             }
-            k= k.next;
         }
         if(i!=null){
             k.next=i;

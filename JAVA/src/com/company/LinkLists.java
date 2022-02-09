@@ -1,5 +1,7 @@
 package com.company;
 
+import javax.naming.NoInitialContextException;
+
 class Node{
 
     int data;
@@ -100,19 +102,24 @@ public class LinkLists {
             l++;
             i=i.next;
         }
-        System.out.println("length of linkedlist is:" +l);
+       // System.out.println("length of linkedlist is:" +l);
         return l;
     }
 
     public int middleElement(){
-        int m= length()/2;
+   /*     int m= length()/2;
 
         Node i = head;
         for(int j=0; j<m; j++){
             i=i.next;
+        }  */
+        Node slow=head, fast=head;
+        while (fast!=null && fast.next!=null){
+            fast= fast.next.next;
+            slow= slow.next;
         }
-        System.out.println("middle element is:" + i.data);
-        return i.data;
+        System.out.println("middle element is:" + slow.data);
+        return slow.data;
     }
 
     public void insertAtPosition(int data, int position){
@@ -181,6 +188,50 @@ public class LinkLists {
         return i;
     }
 
+    public void zig_zagLinkedList(LinkLists l1, LinkLists l2){
+     //   head =l1.head; // giving l3 it's head, otherwise head will be null
+        head = l1.head!=null ? l1.head : l2.head;
+        Node i = l1.head; // i= 1, 2, 3, 4, 5
+        Node j = l2.head; //j=  6, 7, 8, 9, 10
+        Node k = head;       // 1
+
+   /*     i = i.next; // i = 2
+        k.next = j; // 1 -> 6
+        k= k.next; // k= 6
+
+        j = j.next; // j=7
+        k.next =i; // 6 ->2
+        k = k.next; // k= 2
+
+        i = i.next; // i = 3
+        k.next = j; // 2 -> 7
+        k= k.next; // k=7   */
+
+        while(i!=null && j!=null){
+
+            i = i.next;
+            k.next = j;
+            k= k.next;
+            System.out.println(k.data);
+
+
+            j = j.next;
+
+            if(i!=null) {
+                k.next = i;
+                k = k.next;
+                System.out.println(k.data);
+            }
+        }
+
+        if(i==null){
+            k.next=j;
+        }
+        if(j==null) {
+            k.next = i;
+        }
+    }
+
 
 
 
@@ -190,22 +241,24 @@ public class LinkLists {
         LinkLists l2 = new LinkLists();
 
         l1.head = new Node(1);
-        l1.head.next = new Node(2);
+   /*     l1.head.next = new Node(2);
         l1.head.next.next = new Node(3);
         l1.head.next.next.next = new Node(4);
         l1.head.next.next.next.next = new Node(5);
-        l1.print();
+        l1.head.next.next.next.next.next = new Node(6);  */
+        l1.print("l1: ");
 
         l2.insertAtTail(6);
-        l2.print();
+     //   l2.print();
         l2.insertAtTail(7);
-        l2.print();
+   //     l2.print();
         l2.insertAtTail(8);
-        l2.print();
+    //    l2.print();
         l2.insertAtTail(9);
-        l2.print();
+   //     l2.print();
         l2.insertAtTail(10);
-        l2.print();
+        l2.insertAtTail(11);
+        l2.print("l2: ");
 
 
         l2.removeAtTail();
@@ -214,6 +267,7 @@ public class LinkLists {
         l2.length();
 
         l2.middleElement();
+        l2.print();
 
         l2.insertAtPosition(80, 60);
 
@@ -221,7 +275,10 @@ public class LinkLists {
         l2.print("l2 :");
 
         LinkLists l3= new LinkLists();
-        l3.mergeLinkedList(l1,l2);
+     //  l3.mergeLinkedList(l1,l2);
+
+        l3.zig_zagLinkedList(l1,l2);
+        l3.print("l3: ");
 
     }
 }
