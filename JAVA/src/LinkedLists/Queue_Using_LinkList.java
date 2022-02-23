@@ -1,4 +1,4 @@
-package com.company;
+package LinkedLists;
 
 public class Queue_Using_LinkList {
 

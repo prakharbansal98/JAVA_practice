@@ -1,4 +1,4 @@
-package com.company;
+package LinkedLists;
 
 public class CircularLinkLists extends LinkLists {
 

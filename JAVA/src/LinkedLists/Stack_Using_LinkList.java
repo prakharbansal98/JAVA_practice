@@ -1,4 +1,4 @@
-package com.company;
+package LinkedLists;
 
 public class Stack_Using_LinkList {
 

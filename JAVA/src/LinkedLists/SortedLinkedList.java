@@ -1,4 +1,4 @@
-package com.company;
+package LinkedLists;
 
 import java.util.Random;
 

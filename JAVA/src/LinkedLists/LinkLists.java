@@ -1,6 +1,4 @@
-package com.company;
-
-import javax.naming.NoInitialContextException;
+package LinkedLists;
 
 class Node{
 
